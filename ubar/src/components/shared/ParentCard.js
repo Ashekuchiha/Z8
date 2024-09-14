@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardHeader, CardContent, Divider, Box } from '@mui/material';
+import { Card, CardHeader, CardContent, Divider, Box, Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 const ParentCard = ({ title, children, footer }) => {
@@ -12,6 +12,7 @@ const ParentCard = ({ title, children, footer }) => {
       variant={!customizer.isCardShadow ? 'outlined' : undefined}
     >
       <CardHeader title={title} />
+      <Button color="primary" style={{ bottom: '40px', left:'93%'}}>add</Button>
       <Divider />
 
       <CardContent>{children}</CardContent>

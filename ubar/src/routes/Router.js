@@ -5,6 +5,7 @@ import Loadable from '../layouts/full/shared/loadable/Loadable';
 import BirdEyeMapView from 'src/views/my-pages/BirdEyeMapView';
 import InstantRides from 'src/views/my-pages/InstantRides';
 import MyTablePage from 'src/views/MyWidgets/CustomTableDemo';
+import DriverCreate from 'src/views/MyWidgets/DriverCreate';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -127,6 +128,7 @@ const Router = [
       // { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/admin/rides/:type', element: <InstantRides /> },
       { path: '/admin/categories/', element: <MyTablePage /> },
+      {path: '/admin/categories/drivercreate', element: <DriverCreate/>},
       { path: '/admin/categories/create', element: <Maintenance /> },
       { path: '/admin/rides/:type', element: <Maintenance /> },
       { path: '/admin/discounts/', element: <Maintenance /> },

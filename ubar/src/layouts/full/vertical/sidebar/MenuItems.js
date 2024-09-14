@@ -68,6 +68,7 @@ import {
 } from '@tabler/icons';
 
 import { uniqueId } from 'lodash';
+// import { title } from 'process';
 
 const Menuitems = [
   {
@@ -164,6 +165,44 @@ const Menuitems = [
         href: '/admin/categories/create',
       }
     ],
+  },
+  {
+    id:uniqueId(),
+    title: 'Driver',
+    icon:IconCar ,
+    href:'/admin/categories/drivercreate',
+    children:[
+      {
+        id:uniqueId(),
+        title: 'Add Drivers',
+        icon:IconCar ,
+        href:'/admin/categories/drivercreate',
+      },
+      {
+        id:uniqueId(),
+        title: 'All Drivers',
+        icon:IconCar ,
+        href:'/',
+      },
+      {
+        id:uniqueId(),
+        title: 'Approved Drivers',
+        icon:IconCar ,
+        href:'/',
+      },
+      {
+        id:uniqueId(),
+        title: 'Banned Drivers',
+        icon:IconCar ,
+        href:'/',
+      },
+      {
+        id:uniqueId(),
+        title: 'Rejected Drivers',
+        icon:IconCar ,
+        href:'/',
+      },
+    ]
   },
   {
     id: uniqueId(),
