@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
     CardContent,
     FormHelperText,
     Grid,
@@ -14,6 +17,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CarForm from './CarForm';
+import { IconChevronDown } from '@tabler/icons';
 
 const validationSchema = yup.object({
     fname: yup
@@ -52,6 +56,12 @@ export default function FormDriver() {
           alert(JSON.stringify(values, null, 2));
         },
       });
+
+    const [expanded, setExpanded] = useState('panel1');
+    const handleChange4 =
+    (panel) => (event, newExpanded) => {
+      setExpanded(newExpanded ? panel : true);
+    };
   return (
     <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={3} mb={3}>
@@ -123,7 +133,7 @@ export default function FormDriver() {
                 <input type='file'></input>
             </Grid>
             <Grid item xs={12} sm={12} lg={4}>
-            <CustomFormLabel>Email Address</CustomFormLabel>
+                <CustomFormLabel>Email Address</CustomFormLabel>
                 <CustomTextField
                 placeholder='Enter E-mail'
                     fullWidth
@@ -153,7 +163,162 @@ export default function FormDriver() {
                 )}
             </Grid>
         </Grid>
-        <CarForm/>
+        {/* driver details */}
+        <>
+        <Accordion elevation={9} sx={{ mb: 2 }} expanded={expanded === 'panel1'} onChange={handleChange4('panel1')}>
+            <AccordionSummary
+            expandIcon={<IconChevronDown size="20" />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            >
+                <Typography variant="h6">Driver Details</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={12} lg={4}>
+                    <CustomFormLabel>Driver License Front Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver NID Front Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver House Electricity Bill</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver Bank Cheque Book </CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Front Side Picture</CustomFormLabel>
+                    <input type='file'></input>
+                </Grid>
+                <Grid item xs={12} sm={12} lg={4}>
+                <CustomFormLabel>Driver License Back Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver NID Back Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver House Electricity Bill Back SIde</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver Bank Card </CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Front Side Picture</CustomFormLabel>
+                    <input type='file'></input>
+                </Grid>
+                <Grid item xs={12} sm={12} lg={4}>
+                    <CustomFormLabel>Car Fitness License picture</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Tax Token</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Owner Picture</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Owner NID</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Insurance Picture</CustomFormLabel>
+                    <input type='file'></input>
+                </Grid>
+            </Grid>
+            </AccordionDetails>
+        </Accordion>
+        </>
+        {/* car detauils */}
+        <>
+        <Accordion elevation={9} sx={{ mb: 2 }} expanded={expanded === 'panel1'} onChange={handleChange4('panel1')}>
+            <AccordionSummary
+            expandIcon={<IconChevronDown size="20" />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            >
+                <Typography variant="h6">Car Details</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={12} lg={4}>
+                    <CustomFormLabel>Driver License Front Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver NID Front Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver House Electricity Bill</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver Bank Cheque Book </CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Front Side Picture</CustomFormLabel>
+                    <input type='file'></input>
+                </Grid>
+                <Grid item xs={12} sm={12} lg={4}>
+                <CustomFormLabel>Driver License Back Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver NID Back Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver House Electricity Bill Back SIde</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver Bank Card </CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Front Side Picture</CustomFormLabel>
+                    <input type='file'></input>
+                </Grid>
+                <Grid item xs={12} sm={12} lg={4}>
+                    <CustomFormLabel>Car Fitness License picture</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Tax Token</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Owner Picture</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Owner NID</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Insurance Picture</CustomFormLabel>
+                    <input type='file'></input>
+                </Grid>
+            </Grid>
+            </AccordionDetails>
+        </Accordion>
+        </>
+        {/*driver car documents*/}
+        <>
+        <Accordion elevation={9} sx={{ mb: 2 }} expanded={expanded === 'panel1'} onChange={handleChange4('panel1')}>
+            <AccordionSummary
+            expandIcon={<IconChevronDown size="20" />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            >
+                <Typography variant="h6">Driver & Car Documents</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={12} lg={4}>
+                    <CustomFormLabel>Driver License Front Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver NID Front Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver House Electricity Bill</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver Bank Cheque Book </CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Front Side Picture</CustomFormLabel>
+                    <input type='file'></input>
+                </Grid>
+                <Grid item xs={12} sm={12} lg={4}>
+                <CustomFormLabel>Driver License Back Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver NID Back Side</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver House Electricity Bill Back SIde</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Driver Bank Card </CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Front Side Picture</CustomFormLabel>
+                    <input type='file'></input>
+                </Grid>
+                <Grid item xs={12} sm={12} lg={4}>
+                    <CustomFormLabel>Car Fitness License picture</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Tax Token</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Owner Picture</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Owner NID</CustomFormLabel>
+                    <input type='file'></input>
+                    <CustomFormLabel>Car Insurance Picture</CustomFormLabel>
+                    <input type='file'></input>
+                </Grid>
+            </Grid>
+            </AccordionDetails>
+        </Accordion>
+        </>
         <Button color="primary" variant="contained" type="submit">
         Sign In
         </Button>
