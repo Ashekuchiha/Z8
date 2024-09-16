@@ -65,6 +65,8 @@ import {
   IconCar,
   IconCash,
   IconUserCheck,
+  IconCategory,
+  IconBuildingSkyscraper,
 } from '@tabler/icons';
 
 import { uniqueId } from 'lodash';
@@ -224,7 +226,30 @@ const Menuitems = [
       }
     ],
   },
-
+  {
+    id: uniqueId(),
+    title: 'Categories',
+    icon: IconCategory,
+    href: '/admin/categories/categorie',
+  },
+  {
+    id: uniqueId(),
+    title: 'Citiess',
+    icon: IconBuildingSkyscraper,
+    href: '/admin/categories/citiess',
+  },
+  {
+    id: uniqueId(),
+    title: 'Commissions',
+    icon: IconBuildingSkyscraper,
+    href: '/admin/categories/commissions',
+  },
+  {
+    id: uniqueId(),
+    title: 'Coupons',
+    icon: IconBuildingSkyscraper,
+    href: '/admin/categories/coupons',
+  },
   {
     id: uniqueId(),
     title: 'Vehicles',

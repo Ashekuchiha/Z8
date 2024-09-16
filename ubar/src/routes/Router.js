@@ -6,6 +6,10 @@ import BirdEyeMapView from 'src/views/my-pages/BirdEyeMapView';
 import InstantRides from 'src/views/my-pages/InstantRides';
 import MyTablePage from 'src/views/MyWidgets/CustomTableDemo';
 import DriverCreate from 'src/views/MyWidgets/DriverCreate';
+import CategoriesForm from 'src/views/MyWidgets/CategoriesForm';
+import Cities from 'src/views/MyWidgets/Cities';
+import Commissions from 'src/views/MyWidgets/Commissions ';
+import Coupons from 'src/views/MyWidgets/Coupons';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -129,6 +133,10 @@ const Router = [
       { path: '/admin/rides/:type', element: <InstantRides /> },
       { path: '/admin/categories/', element: <MyTablePage /> },
       {path: '/admin/categories/drivercreate', element: <DriverCreate/>},
+      {path:'/admin/categories/categorie', element: <CategoriesForm/>},
+      {path: '/admin/categories/citiess', element:<Cities/>},
+      {path: '/admin/categories/commissions', element:<Commissions/>},
+      {path: '/admin/categories/coupons', element:<Coupons/>},
       { path: '/admin/categories/create', element: <Maintenance /> },
       { path: '/admin/rides/:type', element: <Maintenance /> },
       { path: '/admin/discounts/', element: <Maintenance /> },

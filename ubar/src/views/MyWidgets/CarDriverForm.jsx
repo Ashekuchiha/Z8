@@ -50,27 +50,7 @@ const validationSchema = yup.object({
 
 
 const CarDriverForm = () => {
-  // address type
-  const [value, setValue] = React.useState('');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  //   delivery options
-  const [value2, setValue2] = React.useState('');
-
-  const handleChange2 = (event) => {
-    setValue2(event.target.value);
-  };
-
-  //   payment
-  const [value3, setValue3] = React.useState('radio1');
-
-  const handleChange3 = (event) => {
-    setValue3(event.target.value);
-  };
-
+  
   // default open slide
   const [expanded, setExpanded] = React.useState('panel1');
 
@@ -82,19 +62,37 @@ const CarDriverForm = () => {
     const formik = useFormik({
         initialValues: {
           fname:'',
+          phone:'',
+          password:'',
           lname:'',
-          gender:'',
-          city:'',
-          cmname:'',
-          firstName: '',
+          gender: '',
           email: '',
-          password: '',
-          changepassword: '',
+          city: '',
+          // changepassword: '',
+          // car details
+          cmnamee:'',
+          cmyear:'',
+          cenumber:'',
+          crnumber:'',
+          cbnumber:'',
+          cttnumber:'',
+          crpnumber:'',
+          coban:'',
+          cmname:'',
+          cn:'',
+          cry:'',
+          ccolor:'',
+          ccnumber:'',
+          csnum:'',
+          cfnumber:'',
+          cinumberr:'',
+          connumber:'',
           
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
           alert(JSON.stringify(values, null, 2));
+          console.log("values",values)
         },
       });
 
@@ -202,8 +200,8 @@ const CarDriverForm = () => {
                     value={formik.values.city}
                     onChange={formik.handleChange}
                 >
-                    <MenuItem value='male'>Male</MenuItem>
-                    <MenuItem value='female'>Female</MenuItem>
+                    <MenuItem value='male'>Dhaka</MenuItem>
+                    <MenuItem value='female'>dylet</MenuItem>
                 </CustomSelect>
                 {formik.errors.city && (
                     <FormHelperText error id="standard-weight-helper-text-email-login">
@@ -231,12 +229,12 @@ const CarDriverForm = () => {
                 <CustomTextField
                     placeholder='Enter Car Model Name'
                     fullWidth
-                    id="cmname"
-                    name="cmname"
-                    value={formik.values.cmname}
+                    id="cmnamee"
+                    name="cmnamee"
+                    value={formik.values.cmnamee}
                     onChange={formik.handleChange}
-                    error={formik.touched.cmname && Boolean(formik.errors.cmname)}
-                    helperText={formik.touched.cmname && formik.errors.cmname}
+                    error={formik.touched.cmnamee && Boolean(formik.errors.cmnamee)}
+                    helperText={formik.touched.cmnamee && formik.errors.cmnamee}
                 />
                 <CustomFormLabel>Car Model Year</CustomFormLabel>
                 <CustomTextField
@@ -478,9 +476,15 @@ const CarDriverForm = () => {
             </Grid>
         </AccordionDetails>
       </Accordion>
-      <Button color="primary" variant="contained" type="submit">
-        Submit
+        <Button 
+        color="primary"
+        variant="contained"
+        type="submit"
+        disabled={formik.isSubmitting}  // Disable the button when the form is submitting
+        >
+        {formik.isSubmitting ? 'Submitting...' : 'Submit'}
         </Button>
+
       </form>
     </div>
   );
