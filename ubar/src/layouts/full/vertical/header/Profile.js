@@ -9,8 +9,12 @@ import { Stack } from '@mui/system';
 import ProfileImg from 'src/assets/images/profile/user-1.jpg';
 import unlimitedImg from 'src/assets/images/backgrounds/unlimited-bg.png';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import { useDispatch } from 'react-redux';
+import { logout } from 'src/views/MyWidgets/userSlice';
+
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const [anchorEl2, setAnchorEl2] = useState(null);
   const handleClick2 = (event) => {
     setAnchorEl2(event.currentTarget);
@@ -19,6 +23,9 @@ const Profile = () => {
     setAnchorEl2(null);
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <Box>
       <IconButton
@@ -138,7 +145,7 @@ const Profile = () => {
               </Box>
             ))}
             <Box mt={2}>
-              <Box bgcolor="primary.light" p={3} mb={3} overflow="hidden" position="relative">
+              {/* <Box bgcolor="primary.light" p={3} mb={3} overflow="hidden" position="relative">
                 <Box display="flex" justifyContent="space-between">
                   <Box>
                     <Typography variant="h5" mb={2}>
@@ -151,13 +158,14 @@ const Profile = () => {
                   </Box>
                   <img src={unlimitedImg} alt="unlimited" className="signup-bg"></img>
                 </Box>
-              </Box>
+              </Box> */}
               <Button
-                to="/auth/login"
+                // to="/auth/login"
                 variant="outlined"
                 color="primary"
-                component={Link}
+                // component={Link}
                 fullWidth
+                onClick={handleLogout}
               >
                 Logout
               </Button>

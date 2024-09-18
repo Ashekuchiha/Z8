@@ -1,0 +1,18 @@
+{
+    "user": [
+        {
+            "username":"ashik",
+            "password":12345678,
+            "role":"admin",
+            "token":"adminLoginToken"
+        },
+        {
+            "username":"alif",
+            "password":12345678,
+            "role":"city admin",
+            "token":"adminLoginToken",
+        }
+    ]
+  }
+
+ 
