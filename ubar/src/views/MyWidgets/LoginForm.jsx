@@ -145,14 +145,24 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const role = useSelector((state) => state.user.role);
 
   // Redirect user to dashboard if already authenticated
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     navigate('/dashboard');
+  //   }
+  //   console.log(isAuthenticated)
+  // }, [isAuthenticated, navigate]);
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/dashboard');
+      if (role === 'admin') {
+        navigate('/admin-dashboard');
+      } else if (role === 'city admin') {
+        navigate('/city-admin-dashboard');
+      }
     }
-    console.log(isAuthenticated)
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, role, navigate]);
 
   const formik = useFormik({
     initialValues: {
@@ -160,9 +170,21 @@ const LoginForm = () => {
       password: '',
     },
     validationSchema,
+    // onSubmit: async (values, { setErrors }) => {
+    //   const result = await dispatch(login(values));
+    //   if (result.error) {
+    //     setErrors({ general: 'Invalid username or password' });
+    //   }
+    // },
     onSubmit: async (values, { setErrors }) => {
-      const result = await dispatch(login(values));
-      if (result.error) {
+      try {
+        await dispatch(login(values));
+        if (role === 'admin') {
+          navigate('/admin-dashboard');
+        } else if (role === 'city admin') {
+          navigate('/city-admin-dashboard');
+        }
+      } catch (error) {
         setErrors({ general: 'Invalid username or password' });
       }
     },
@@ -220,6 +242,7 @@ const LoginForm = () => {
           size="large"
           fullWidth
           type="submit"
+          mt={2}
         >
           Sign In
         </Button>

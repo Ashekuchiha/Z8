@@ -123,6 +123,8 @@ const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintena
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
 const Login = Loadable(lazy(() => import('../views/MyWidgets/Login')));
+
+
 const Router = [
   {
     path: '/',
@@ -133,10 +135,18 @@ const Router = [
     element: <Login />,
   },
   {
-    path: '/dashboard',
+    path: '/admin-dashboard',
     element: (
-      <ProtectedRoute element={<FullLayout/>}
-        requiredRole={['admin','city admin']}
+      <ProtectedRoute element={<FullLayout><ModernDash/></FullLayout>}
+        requiredRole={['admin']}
+      />
+    )
+  },
+  {
+    path: '/city-admin-dashboard',
+    element: (
+      <ProtectedRoute element={<FullLayout><BirdEyeMapView/></FullLayout>}
+        requiredRole={['city admin']}
       />
     )
   },

@@ -82,7 +82,7 @@ const Menuitems = [
     id: uniqueId(),
     title: 'Dashboard',
     icon: IconAperture,
-    href: '/admin',
+    href: '/admin-dashboard',
     chipColor: 'secondary',
   },
 

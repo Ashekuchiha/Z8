@@ -91,13 +91,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const users = [
   {
     username: "ashik",
-    password: "12345678",
+    password: "1234",
     role: "admin",
     token: "adminLoginToken"
   },
   {
     username: "alif",
-    password: "12345678",
+    password: "1234",
     role: "city admin",
     token: "cityAdminLoginToken"
   }
@@ -132,7 +132,6 @@ const authSlice = createSlice({
         localStorage.setItem('authUser', JSON.stringify(foundUser));
       } else {
         throw new Error('Invalid username or password');
-        console.log("login problem")
       }
     },
     logout: (state) => {
