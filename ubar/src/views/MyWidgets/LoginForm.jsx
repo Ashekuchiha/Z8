@@ -156,11 +156,12 @@ const LoginForm = () => {
   // }, [isAuthenticated, navigate]);
   useEffect(() => {
     if (isAuthenticated) {
-      if (role === 'admin') {
-        navigate('/admin-dashboard');
-      } else if (role === 'city admin') {
-        navigate('/city-admin-dashboard');
-      }
+      // if (role === 'admin') {
+      //   navigate('/admin-dashboard');
+      // } else if (role === 'city admin') {
+      //   navigate('/city-admin-dashboard');
+      // }
+      navigate('/admin')
     }
   }, [isAuthenticated, role, navigate]);
 
@@ -179,11 +180,12 @@ const LoginForm = () => {
     onSubmit: async (values, { setErrors }) => {
       try {
         await dispatch(login(values));
-        if (role === 'admin') {
-          navigate('/admin-dashboard');
-        } else if (role === 'city admin') {
-          navigate('/city-admin-dashboard');
-        }
+        // if (role === 'admin') {
+        //   navigate('/admin-dashboard');
+        // } else if (role === 'city admin') {
+        //   navigate('/city-admin-dashboard');
+        // }
+        navigate('/admin')
       } catch (error) {
         setErrors({ general: 'Invalid username or password' });
       }
@@ -197,7 +199,7 @@ const LoginForm = () => {
       </Typography>
 
       <form onSubmit={formik.handleSubmit}>
-        <Stack spacing={2}>
+        <Stack spacing={2} mb={2}>
           <Box>
             <CustomFormLabel htmlFor="username">Username</CustomFormLabel>
             <CustomTextField
@@ -213,7 +215,7 @@ const LoginForm = () => {
             />
           </Box>
 
-          <Box>
+          <Box mb={2}>
             <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
             <CustomTextField
               id="password"
@@ -242,7 +244,7 @@ const LoginForm = () => {
           size="large"
           fullWidth
           type="submit"
-          mt={2}
+          
         >
           Sign In
         </Button>

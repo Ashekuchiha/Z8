@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Box, Menu, Avatar, Typography, Divider, Button, IconButton } from '@mui/material';
 import * as dropdownData from './data';
 
@@ -14,6 +14,7 @@ import { logout } from 'src/views/MyWidgets/userSlice';
 
 
 const Profile = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [anchorEl2, setAnchorEl2] = useState(null);
   const handleClick2 = (event) => {
@@ -25,6 +26,8 @@ const Profile = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate('/login')
+    
   };
   return (
     <Box>

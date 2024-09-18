@@ -1,5 +1,6 @@
 import React from 'react';
-import Menuitems from './MenuItems';
+// import Menuitems from './MenuItems';
+// import MenuitemsCT from './MenuItemsCT'; // Assuming you have this for other role's menu items
 import { useLocation } from 'react-router';
 import { Box, List, useMediaQuery } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,6 +8,17 @@ import { toggleMobileSidebar } from 'src/store/customizer/CustomizerSlice';
 import NavItem from './NavItem';
 import NavCollapse from './NavCollapse';
 import NavGroup from './NavGroup/NavGroup';
+import { Menuitems, MenuitemsCT } from './MenuItems';
+// import MenuitemsCT from '../../horizontal/navbar/Menudata';
+// import { Menuitems, MenuitemsCT } from './MenuItems';
+// import { Menuitems, MenuitemsCT } from '../sidebar/MenuItems';
+
+
+
+
+
+
+
 
 const SidebarItems = () => {
   const { pathname } = useLocation();
@@ -17,17 +29,20 @@ const SidebarItems = () => {
   const hideMenu = lgUp ? customizer.isCollapse && !customizer.isSidebarHover : '';
   const dispatch = useDispatch();
 
+  const role = useSelector((state) => state.user.role); // Assuming you're accessing the role from user state
+
+  const menuToDisplay = role === 'admin' ? Menuitems : MenuitemsCT; // Choose menu based on role
+
   return (
     <Box sx={{ px: 3 }}>
       <List sx={{ pt: 0 }} className="sidebarNav">
-        {Menuitems.map((item, index) => {
+        {menuToDisplay.map((item, index) => {
           // {/********SubHeader**********/}
           if (item.subheader) {
             return <NavGroup item={item} hideMenu={hideMenu} key={item.subheader} />;
-
-            // {/********If Sub Menu**********/}
-            /* eslint no-else-return: "off" */
-          } else if (item.children) {
+          }
+          // {/********If Sub Menu**********/}
+          else if (item.children) {
             return (
               <NavCollapse
                 menu={item}
@@ -39,9 +54,9 @@ const SidebarItems = () => {
                 onClick={() => dispatch(toggleMobileSidebar())}
               />
             );
-
-            // {/********If Sub No Menu**********/}
-          } else {
+          }
+          // {/********If No Sub Menu**********/}
+          else {
             return (
               <NavItem
                 item={item}
@@ -57,4 +72,5 @@ const SidebarItems = () => {
     </Box>
   );
 };
+
 export default SidebarItems;

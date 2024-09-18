@@ -12,9 +12,10 @@ import {
   Typography,
 } from '@mui/material';
 import { IconSearch, IconX } from '@tabler/icons';
-import Menuitems from '../sidebar/MenuItems';
+// import {Menuitems} from '../sidebar/MenuItems';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { Link } from 'react-router-dom';
+import { Menuitems } from '../sidebar/MenuItems';
 
 const Search = () => {
   // drawer top
