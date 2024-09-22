@@ -10,7 +10,7 @@
             "username":"alif",
             "password":12345678,
             "role":"city admin",
-            "token":"adminLoginToken",
+            "token":"adminLoginToken"
         }
     ]
 }

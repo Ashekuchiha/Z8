@@ -1,186 +1,103 @@
-const Router = [
-  {
-    path: '/',
-    element: <Login />,
-  },
-  {
-    path: '/',
-    element: <FullLayout />,
-    children: [
-      { path: '/', element: <Navigate to="/admin" /> },
-      { path: '/admin', exact: true, element: <ModernDash /> },
-      { path: '/admin/bird-eye', exact: true, element: <BirdEyeMapView /> },
-    ]
-  }
-]  
+import { Button, Grid } from '@mui/material'
+import React from 'react'
+import PageContainer from 'src/components/container/PageContainer'
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel'
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField'
+import ParentCard from 'src/components/shared/ParentCard'
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb'
 
-{
-  path:'/',
-  element: <Login2/>
-},
-{
-  path:'/user',
-  element:<FullLayout/>,
-  children:[
-    { path: '/user', exact: true, element: <ModernDash /> },
-    { path: '/user/bird-eye', exact: true, element: <Error/> },
+import { useFormik } from 'formik'
+import * as yup from 'yup';
 
-  ]
-},
-{
-  path:'/admin',
-  element:<FullLayout/>,
-  children:[
-    { path: '/admin', exact: true, element: <ModernDash /> },
-    { path: '/admin/bird-eye', exact: true, element: <BirdEyeMapView /> },
-
-  ]
-},
-
-import React, { useEffect } from 'react';
-import {
-  Box,
-  Typography,
-  FormGroup,
-  FormControlLabel,
-  Button,
-  Stack,
-  Divider,
-} from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-
-import CustomCheckbox from '../../../components/forms/theme-elements/CustomCheckbox';
-import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
-import AuthSocialButtons from './AuthSocialButtons';
-import { login } from 'src/views/MyWidgets/userSlice';
-
-// Define validation schema with Yup
-const validationSchema = Yup.object({
-  username: Yup.string().required('Username is required'),
-  password: Yup.string().required('Password is required'),
+const validationSchema = yup.object({
+    fname: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Firstname is Required'),
+    lname: yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
+    btlname: yup.string().required('Business Tread license Name is Required'),
+    mobile:  yup.string().min(11, 'Too Short!').max(11, 'Too Long!').required('Mobile number is Required'),
+    email: yup.string('Enter your email').email('Enter a valid email').required('Email is required'),
+    Bname: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Bank name is Required'),
+    account: yup.string().min(2, 'Too Short!').max(100, 'Too Long!').required('Account is Required'),
+    oaddress: yup.string().min(2, 'Too Short!').required('Address is Required'),
 });
 
-const LoginPage  = ({ title, subtitle, subtext }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+export default function FormCityAgentRegistration() {
+    const formik = useFormik({
+        initialValues: {
+            fname: '',
+            lname: '',
+            btlname: '',
+            mobile: '',
+            email: '',
+            Bname: '',
+            account: '',
+            oaddress: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: async (values) => {
+            try {
+                const response = await fetch('https://66daff06f47a05d55be6bad9.mockapi.io/need', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(values),
+                });
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/dashboard');
-    }
-  }, [isAuthenticated, navigate]);
+                if (response.ok) {
+                    const data = await response.json();
+                    alert('Form submitted successfully');
+                    console.log('Submitted data:', data);
+                } else {
+                    alert('Failed to submit the form');
+                }
+            } catch (error) {
+                console.error('Error submitting the form:', error);
+                alert('An error occurred. Please try again.');
+            }
+        },
+    });
 
-  // Initialize Formik
-  const formik = useFormik({
-    initialValues: {
-      username: '',
-      password: '',
-    },
-    validationSchema,
-    onSubmit: async (values) => {
-      const result = await dispatch(login(values));
-      if (result.payload) {
-        navigate('/dashboard');
-      }
-    },
-  });
-
-  return (
-    <>
-      {title && (
-        <Typography fontWeight="700" variant="h3" mb={1}>
-          {title}
-        </Typography>
-      )}
-
-      {subtext}
-
-      <AuthSocialButtons title="Sign in with" />
-      <Box mt={3}>
-        <Divider>
-          <Typography
-            component="span"
-            color="textSecondary"
-            variant="h6"
-            fontWeight="400"
-            position="relative"
-            px={2}
-          >
-            or sign in with
-          </Typography>
-        </Divider>
-      </Box>
-      <form onSubmit={formik.handleSubmit}>
-        <Stack spacing={2}>
-          <Box>
-            <CustomFormLabel htmlFor="username">Username</CustomFormLabel>
-            <CustomTextField
-              id="username"
-              name="username"
-              variant="outlined"
-              fullWidth
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.username && Boolean(formik.errors.username)}
-              helperText={formik.touched.username && formik.errors.username}
-            />
-          </Box>
-          <Box>
-            <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
-            <CustomTextField
-              id="password"
-              name="password"
-              type="password"
-              variant="outlined"
-              fullWidth
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
-            />
-          </Box>
-          <Stack justifyContent="space-between" direction="row" alignItems="center" my={2}>
-            <FormGroup>
-              <FormControlLabel
-                control={<CustomCheckbox defaultChecked />}
-                label="Remember this Device"
-              />
-            </FormGroup>
-            <Typography
-              component={Link}
-              to="/auth/forgot-password"
-              fontWeight="500"
-              sx={{
-                textDecoration: 'none',
-                color: 'primary.main',
-              }}
-            >
-              Forgot Password?
-            </Typography>
-          </Stack>
-        </Stack>
-        <Box>
-          <Button
-            color="primary"
-            variant="contained"
-            size="large"
-            fullWidth
-            type="submit"
-          >
-            Sign In
-          </Button>
-        </Box>
-        {subtitle}
-      </form>
-    </>
-  );
-};
-
-export default LoginPage ;
+    return (
+        <PageContainer title="Register City Agent Form" description="this is Custom Form page">
+            <Breadcrumb title="Register City Agent Form" subtitle="" />
+            <ParentCard title="Fill up the Following form">
+                <form onSubmit={formik.handleSubmit}>
+                    <Grid container spacing={2} mb={3}>
+                        <Grid container spacing={2} mb={3}>
+                            <Grid item xs={12} sm={12} lg={6} order={{ xs: 1, lg: 1 }}>
+                                <CustomFormLabel>First Name</CustomFormLabel>
+                                <CustomTextField
+                                    fullWidth
+                                    id="fname"
+                                    name="fname"
+                                    value={formik.values.fname}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.fname && Boolean(formik.errors.fname)}
+                                    helperText={formik.touched.fname && formik.errors.fname}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={12} lg={6} order={{ xs: 2, lg: 2 }}>
+                                <CustomFormLabel>Last Name</CustomFormLabel>
+                                <CustomTextField
+                                    fullWidth
+                                    id="lname"
+                                    name="lname"
+                                    value={formik.values.lname}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.lname && Boolean(formik.errors.lname)}
+                                    helperText={formik.touched.lname && formik.errors.lname}
+                                />
+                            </Grid>
+                            {/* Other fields */}
+                            <Grid item xs={12}>
+                                <Button color="primary" variant="contained" type="submit">
+                                    Submit
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </form>
+            </ParentCard>
+        </PageContainer>
+    );
+}

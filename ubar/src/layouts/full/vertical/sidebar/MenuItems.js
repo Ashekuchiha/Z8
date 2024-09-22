@@ -1017,7 +1017,7 @@ const MenuitemsCT = [
     id: uniqueId(),
     title: 'Dashboard',
     icon: IconAperture,
-    href: '/admin-dashboard',
+    href: '/admin',
     chipColor: 'secondary',
   },
 
@@ -1085,8 +1085,7 @@ const MenuitemsCT = [
   {
     id: uniqueId(),
     title: 'Vehicle Category',
-    icon: DirectionsCarOutlined
-    ,
+    icon: DirectionsCarOutlined,
     href: '/admin/categories/',
     children: [
       {

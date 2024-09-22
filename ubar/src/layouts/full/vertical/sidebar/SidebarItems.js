@@ -37,11 +37,15 @@ const SidebarItems = () => {
     <Box sx={{ px: 3 }}>
       <List sx={{ pt: 0 }} className="sidebarNav">
         {menuToDisplay.map((item, index) => {
+
           // {/********SubHeader**********/}
+
           if (item.subheader) {
             return <NavGroup item={item} hideMenu={hideMenu} key={item.subheader} />;
           }
+
           // {/********If Sub Menu**********/}
+          
           else if (item.children) {
             return (
               <NavCollapse

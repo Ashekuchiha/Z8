@@ -185,7 +185,7 @@ const LoginForm = () => {
         // } else if (role === 'city admin') {
         //   navigate('/city-admin-dashboard');
         // }
-        navigate('/admin')
+        navigate('/admin', { replace: true })
       } catch (error) {
         setErrors({ general: 'Invalid username or password' });
       }
