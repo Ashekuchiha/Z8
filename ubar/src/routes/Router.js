@@ -12,6 +12,8 @@ import Commissions from 'src/views/MyWidgets/Commissions ';
 import Coupons from 'src/views/MyWidgets/Coupons';
 import { element } from 'prop-types';
 import ProtectedRoute from 'src/views/MyWidgets/ProtectedRoute';
+import FormCityAgentRegistration from 'src/views/MyWidgets/FormCityAgentRegistration';
+import FormCityAgentDocument from 'src/views/MyWidgets/FormCityAgentDocument';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -163,7 +165,10 @@ const Router = [
       { path: '/admin', exact: true, element: <ModernDash /> },
       { path: '/admin/bird-eye', exact: true, element: <BirdEyeMapView /> },
       // { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
+
       { path: '/admin/rides/:type', element: <InstantRides /> },
+      { path: '/admin/Cityagent/RegisterCityAgent', element: <FormCityAgentRegistration /> },
+      { path: '/admin/Cityagent/CityAgentDocument', element: <FormCityAgentDocument /> },
       { path: '/admin/categories/', element: <MyTablePage /> },
       {path: '/admin/categories/drivercreate', element: <DriverCreate/>},
       {path:'/admin/categories/categorie', element: <CategoriesForm/>},

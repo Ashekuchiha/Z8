@@ -20,11 +20,7 @@ import CarForm from './CarForm';
 import { IconChevronDown } from '@tabler/icons';
 
 const validationSchema = yup.object({
-    fname: yup
-      .string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Firstname is Required'),
+    fname: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Firstname is Required'),
     lname: yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
     email: yup.string('Enter your email').email('Enter a valid email').required('Email is required'),
     gender: yup.string().required('gender selection is required.'),

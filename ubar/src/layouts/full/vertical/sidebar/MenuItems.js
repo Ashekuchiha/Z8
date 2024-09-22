@@ -1,4 +1,4 @@
-import { Assignment, AssignmentOutlined, CarRental, CarRentalOutlined, Directions, DirectionsCar, DirectionsCarOutlined, LocationCity, LocationCityOutlined, ManageAccountsOutlined, Payments, PaymentsOutlined, RequestQuote, RequestQuoteOutlined, RocketLaunch, RocketLaunchOutlined, Settings } from '@mui/icons-material';
+import { Assignment, AssignmentOutlined, CarRental, CarRentalOutlined, Directions, DirectionsCar, DirectionsCarOutlined, LocationCity, LocationCityOutlined, ManageAccountsOutlined, Payments, PaymentsOutlined, RequestQuote, RequestQuoteOutlined, RocketLaunch, RocketLaunchOutlined, Settings, SupportAgent } from '@mui/icons-material';
 import {
   IconAward,
   IconBoxMultiple,
@@ -102,6 +102,26 @@ const Menuitems = [
   {
     navlabel: true,
     subheader: 'Main',
+  },
+  {
+    id: uniqueId(),
+    title: 'City agent',
+    icon: SupportAgent,
+    href: '/admin/Cityagent/',
+    children: [
+      { 
+        id: uniqueId(),
+        title: 'Register City Agent',
+        icon: SupportAgent,
+        href: '/admin/Cityagent/RegisterCityAgent',
+      },
+      {
+        id: uniqueId(),
+        title: 'City Agent Document',
+        icon: SupportAgent,
+        href: '/admin/Cityagent/CityAgentDocument',
+      }
+    ]
   },
   {
     id: uniqueId(),
